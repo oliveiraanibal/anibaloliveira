@@ -1,0 +1,609 @@
+/* Case Study Specific Styles */
+
+.case-study-main {
+    margin: 80px auto 0 auto;
+    display: flex;
+    max-width: 1230px;
+    position: relative;
+ /*   min-height: calc(100vh - 160px);*/
+}
+
+/* Side Navigation */
+.side-nav {
+    width:280px; /* Made 50% wider from 200px */
+    height: 360px;
+
+
+    position:sticky;
+    top: 135px;
+    margin-left: 20px;
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.side-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.side-nav-list li {
+    margin-bottom: 0.5rem;
+}
+
+.side-nav-link {
+    display: block;
+    font-family: 'SUSE', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.side-nav-link:hover,
+.side-nav-link.active {
+    background: #f8f9fa;
+    color: #3498db;
+    border-left-color: #3498db;
+}
+
+/* Case Study Content - Center aligned and adjusted for wider sidebar */
+.case-study-content {
+    flex: 1;
+    margin-left:20px; /* Adjusted for wider sidebar */
+    padding: 0 2rem 2rem 2rem;
+    max-width: 910px;
+    text-align: left; /* Center align all content */
+    float: right;
+}
+
+/* Hero Section */
+.case-hero {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    padding: 3rem 0;
+    margin-bottom: 0rem;
+    text-align: left; /* Keep hero layout as grid but left-aligned within cells */
+}
+
+.case-title {
+    font-size: 2.5rem;
+    font-family: 'SUSE', sans-serif;
+    font-weight: 400;
+    color: #2c3e50;
+    margin-bottom: 0rem;
+    line-height: 1.2;
+}
+h1.case-title {
+    line-height: 1.5;
+}
+
+.case-subtitle {
+    font-size: 1.35rem;
+    font-family: 'SUSE', sans-serif;
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.case-intro {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+/*
+.case-hero-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}*/
+
+.laptopbg {
+    position: relative;
+    width: 600px;
+    height: 345px;
+    overflow: hidden;
+padding: 15px 66px 0 ;
+    background-image: url('imgs/laptop3.png');
+}
+.laptopbg6 {
+    position: relative;
+    width: 768px;
+    height: 400px;
+    overflow: hidden;
+padding: 17px 84px 0 ;
+    background-image: url('imgs/laptop6.png');
+}
+
+
+.laptopbg4 {
+    position: relative;
+    width: 768px;
+    height: 450px;
+    overflow: hidden;
+padding: 12px 84px 0 ;
+    background-image: url('imgs/laptop5.png');
+}
+
+/* Sections */
+.case-section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 100px;
+}
+
+.section-title {
+    font-size: 1.7rem;
+    font-family: 'SUSE', sans-serif;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 1.65rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3498db;
+}
+
+h2.section-title {
+    padding-top: 1rem;
+}
+
+.case-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.case-section h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #2c3e50;
+    margin: 2.5rem 0 0.9rem 0;
+    font-family: 'SUSE', sans-serif;
+}
+
+.case-section h4 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #34495e;
+    margin: 1.5rem 0 0.8rem 0;
+    font-family: 'SUSE', sans-serif;
+}
+
+/* Context & Contribution */
+.contribution-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    text-align: left; /* Keep text left-aligned within grid cells */
+}
+
+.donut-chart {
+    width: 180px; /* Reduced to 90% of 200px */
+    height: 180px; /* Reduced to 90% of 200px */
+    margin-bottom: 0.5rem; /* Reduced space below the chart as legend is now inside */
+    position: relative;
+    float: left;
+    margin-right: 1.5rem; /* Added space between chart and legend */
+}
+
+.donut-slice {
+    /* Smooth transition for opacity change on hover */
+    transition: opacity 0.2s ease-in-out;
+    cursor: pointer; /* Indicate non-clickable */
+}
+
+#percentage-text, #legend-text { /* Combined styles for both text elements */
+    text-anchor: middle; /* Center the text horizontally */
+    dominant-baseline: middle; /* Center the text vertically */
+    fill: #555; /* Always #555 */
+    font-family: 'SUSE', sans-serif; /* Use SUSE font for consistency */
+}
+#percentage-text {
+    font-size: 1.6rem; /* Slightly reduced font size for percentage */
+    font-weight: 500; /* Bold text */
+}
+#legend-text {
+    font-size: .9rem; /* Slightly reduced font size for legend text */
+    font-weight: 400; /* Lighter weight for legend */
+}
+
+/* Specific style for the percentage symbol */
+#percentage-symbol {
+    font-size: 0.6em; /* 60% of the parent font size for the '%' symbol */
+    vertical-align: super; /* Align it slightly higher */
+}
+
+
+
+
+
+/* Problem Definition */
+.problem-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.problem-statement,
+.opportunity-landscape {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+    text-align: left; /* Keep text left-aligned within containers */
+}
+
+.opportunity-image {
+    margin-top: 1.5rem;
+}
+
+.opportunity-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.image-caption {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* Discovery */
+.research-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.research-image img {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.insights-list {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: left; /* Keep list left-aligned */
+}
+
+.insights-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.insights-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* Vision & Strategy */
+.strategy-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.pillar {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 4px solid #3498db;
+    text-align: left; /* Keep text left-aligned within pillars */
+}
+
+.pillar h4 {
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.vision-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.vision-image img {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.challenges-content {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.challenge-item {
+    background: #fff5f5;
+    border-left: 4px solid #e74c3c;
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    text-align: left; /* Keep text left-aligned within challenges */
+}
+
+.challenge-item h4 {
+    color: #e74c3c;
+    margin: 0 0 0.5rem 0;
+}
+
+.gtm-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.gtm-image img {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Delivery */
+.delivery-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.delivery-image img {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.deliverables-list {
+    background: #f0f9ff;
+    border-left: 4px solid #3498db;
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1rem;
+    text-align: left; /* Keep list left-aligned */
+}
+
+.deliverables-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.deliverables-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* Impacts */
+.impact-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.impact-image img {
+    width: 100%;
+    max-width: 700px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.components-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.component {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #9b59b6;
+    text-align: left; /* Keep text left-aligned within components */
+}
+
+.component h4 {
+    color: #9b59b6;
+    margin-bottom: 1rem;
+}
+
+/* Takeaways */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0 4rem 0;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.metric-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-family: 'SUSE', sans-serif;
+}
+
+.takeaways-content {
+    display: grid;
+    gap: 1.5rem;
+  grid-template-columns: auto auto auto ; 
+    margin-top: 2rem;
+}
+
+.takeaway-item {
+    background: #f0f9ff;
+    border-left: 4px solid #3498db;
+    padding: 1.5rem  1.5rem 0.3rem;
+    border-radius: 0 8px 8px 0;
+    text-align: left; /* Keep text left-aligned within takeaways */
+    margin-bottom: 2rem;
+}
+
+.takeaway-item h4 {
+    color: #3498db;
+    margin: 0 0 0.8rem 0;
+}
+
+p.getintouch {
+    border-bottom: 0 solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+/* Navigation */
+.case-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0 0;
+    padding: 1rem 0 0;
+    border-top: 0 solid #eee;
+}
+
+.nav-btn {
+    text-decoration: none;
+    background: #3498db;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'SUSE', sans-serif;
+}
+
+.nav-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.prev-btn {
+    margin-right: auto;
+}
+
+.next-btn {
+    margin-left: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .side-nav {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+      /*  width: 100%;*/
+        margin-bottom: 2rem;
+        display: none;
+    }
+    
+    .case-study-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 1rem;
+    }
+    
+    .contribution-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .case-hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .strategy-pillars {
+        grid-template-columns: 1fr;
+    }
+    
+    .components-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+    grid-template-columns: auto auto;
+    }
+
+.takeaways-content {
+  grid-template-columns: auto auto ; 
+}
+
+}
+
+@media (max-width: 768px) {
+    .case-title {
+        font-size: 2rem;
+    }
+    
+    .case-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+
+.takeaways-content {
+  grid-template-columns: auto ; 
+}
+
+
+    
+    .metrics-grid {
+    grid-template-columns: auto;
+    }
+
+    .case-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
