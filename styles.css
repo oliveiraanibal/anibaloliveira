@@ -191,11 +191,11 @@ body {
     object-fit: cover;*/
     transition: transform 0.3s ease;
 }
-
+/*
 .case-study-card:hover .card-image img {
     transform: scale(1.05);
 }
-
+*/
 .card-content {
     padding: 1.4rem;
 }
