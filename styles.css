@@ -146,8 +146,8 @@ body {
 }
 
 .filter-tag:hover {
-    background: #bdc3c7;
-    transform: translateY(-2px);
+    background: #3498db;
+    color: white;
 }
 
 .filter-tag.active {
