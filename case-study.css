@@ -10,7 +10,7 @@
 
 /* Side Navigation */
 .side-nav {
-    width:280px; /* Made 50% wider from 200px */
+    width:250px; /* Made 50% wider from 200px */
     height: fit-content;
     
 
@@ -62,10 +62,14 @@
 .case-study-content {
     flex: 1;
     margin-left:20px; /* Adjusted for wider sidebar */
-    padding: 0 2rem 2rem 2rem;
-    max-width: 910px;
+    padding: 0 0 2rem 2rem;
+   /* max-width: 910px; */
     text-align: left; /* Center align all content */
     float: right;
+}
+
+.case-study-content img {
+    max-width: 100%;
 }
 
 /* Hero Section */
@@ -141,6 +145,15 @@ padding: 12px 84px 0 ;
     overflow: hidden;
 padding: 12px 84px 0 ;
     background-image: url('imgs/laptop2.png');
+}
+.laptopbg8 {
+    position: relative;
+    width: 900px;
+    height: 447px;
+    overflow: hidden;
+padding: 15px 0 0 101px ;
+    background-image: url('imgs/laptop8.png');
+    margin-top: 1.75rem;
 }
 
 .case-hero-content{
@@ -566,14 +579,14 @@ p.getintouch {
   display: grid;
   row-gap: 20px;
   column-gap: 20px;
-  grid-template-columns: 50% 50%; /* Two equal columns */
+  grid-template-columns: 47% 47%; /* Two equal columns */
   padding: 1.5rem 0 1rem;
 
 }
 .balloon {
   background-color: #eee;
   border-radius: 5px 5px 0 5px ; /* Less round corners */
-  padding: 25px 30px 25px 20px;
+  padding: 25px 40px 25px 20px;
   position: relative;
   height: auto;
   display: flex;
@@ -607,9 +620,9 @@ p.getintouch {
 }
 
 .quote {
-  font-size: 3em; /* Big quote */
+  font-size: 4em; /* Big quote */
   line-height: 1em;
-  margin:0 10px 25px 0;
+  margin:0 20px 10px 0;
   color: #555;
   float: left;
 }
