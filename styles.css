@@ -18,6 +18,10 @@ body {
     padding: 0 20px;
 }
 
+strong {
+    font-weight: 600;
+}
+
 /* Header */
 .header {
     background: #fff;
@@ -287,6 +291,31 @@ body {
 
 .about-certification ul {
 padding-left: 1rem;}
+.about-content {
+max-width: 850px;
+margin: 0 auto;
+padding: 1rem 0 0 0;
+}
+
+.about-text {
+font-size: 1.1rem;
+line-height: 1.8;
+color: #555;
+text-align: left;
+margin-bottom: 2.5rem;
+}
+
+.about-text p {
+margin-bottom: 1.5rem;
+}
+.about-text p a {
+color: #667eea;
+text-decoration: none;
+font-weight: 600;
+}
+h2.section-title {
+font-size: 1.5rem;
+}
 
 
 /* Footer */

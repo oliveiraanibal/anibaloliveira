@@ -34,6 +34,9 @@
 .side-nav-list li {
     margin-bottom: 0.5rem;
 }
+.side-nav-list li:first-child a {
+    color: #9b59b6;
+}
 
 .side-nav-link {
     display: block;
@@ -69,7 +72,7 @@
 .case-hero {
     display: block;
     grid-template-columns: 1fr 1fr;
-    padding: 3rem 0 2.5rem;
+    padding: 3rem 0 0;
     margin-bottom: 0rem;
     text-align: left; /* Keep hero layout as grid but left-aligned within cells */
 }
@@ -494,17 +497,20 @@ h3.contribution-title {
 }
 
 .takeaway-item {
-    background: #f0f9ff;
-    border-left: 4px solid #3498db;
-    padding: 1.5rem  1.5rem 0.3rem;
-    border-radius: 0 8px 8px 0;
+    background: #f6eff9;
+    border-left: 4px solid #9b59b6;
+    padding: 1.25rem  1.5rem 0.3rem;
     text-align: left; /* Keep text left-aligned within takeaways */
     margin-bottom: 2rem;
+    border-radius: 8px;
 }
 
 .takeaway-item h4 {
-    color: #3498db;
+    color: #9b59b6;
     margin: 0 0 0.8rem 0;
+}
+.takeaway-item p {
+    font-size: .85em;
 }
 
 p.getintouch {
