@@ -267,7 +267,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     row-gap: 3rem;
-    column-gap: 2.5rem;
+    gap: 2.5rem;
     margin-top: 2.5rem;
 }
 .about-certifications-grid::after {
