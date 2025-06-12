@@ -82,24 +82,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // DONUT CHART
-   document.addEventListener('DOMContentLoaded', () => {
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+    // Get references to SVG elements and text elements in the donut hole
     const svg = document.querySelector('.donut-chart');
-    const percentageValueTspan = document.getElementById('percentage-value');
-    const percentageSymbolTspan = document.getElementById('percentage-symbol');
+    const percentageText = document.getElementById('percentage-text');
     const legendText = document.getElementById('legend-text');
 
+    // Chart dimensions and properties
     const centerX = 100; // Center X coordinate of the SVG viewBox
     const centerY = 100; // Center Y coordinate of the SVG viewBox
     const outerRadius = 81; // 90% of original 90
-    const strokeWidth = 35; // Increased thickness
-    const innerRadius = outerRadius - strokeWidth; // 81 - 30 = 51
-    const midRadius = innerRadius + (strokeWidth / 2); // 51 + 15 = 66
+    const strokeWidth = 30; // Thickness of the donut ring
+    const innerRadius = outerRadius - strokeWidth; // Inner edge of the stroke
+    const midRadius = innerRadius + (strokeWidth / 2); // Radius for the path to draw the arc
 
-    // Minimal separation on slices (0.5 degrees)
-    const gapDegrees = 1;
+    // Minimal separation between slices in degrees
+    const gapDegrees = 0.5;
 
-    // --- MODIFICATION START ---
-    // Get the data from the HTML script tag
+    // Flag to ensure animation runs only once when chart becomes visible
+    let animationStarted = false; 
+
+    // Get the data for the donut chart from the HTML script tag
     const chartDataElement = document.getElementById('donut-chart-data');
     let data = []; // Initialize data array
 
@@ -125,14 +130,20 @@ document.addEventListener('DOMContentLoaded', function() {
             { percentage: 33, legend: 'Default 3', color: '#888' }
         ];
     }
-    // --- MODIFICATION END ---
 
-
-    // Sort data by percentage in descending order as required
+    // Sort data by percentage in descending order to ensure consistent layout
+    // (largest slice at the top, going clockwise)
     data.sort((a, b) => b.percentage - a.percentage);
 
-    // Function to convert polar coordinates (angle and radius) to Cartesian coordinates
-    // Angles start from the top (12 o'clock) and increase clockwise, matching standard pie chart representation.
+    /**
+     * Converts polar coordinates (angle and radius) to Cartesian coordinates.
+     * Angles are adjusted so 0 degrees is at the 12 o'clock position and increase clockwise.
+     * @param {number} centerX - X coordinate of the center.
+     * @param {number} centerY - Y coordinate of the center.
+     * @param {number} radius - The radius from the center.
+     * @param {number} angleInDegrees - Angle in degrees.
+     * @returns {{x: number, y: number}} Cartesian coordinates.
+     */
     function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
         // Adjust angle: SVG's 0 degrees is typically at 3 o'clock, we want 12 o'clock (top) to be 0.
         const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
@@ -142,54 +153,66 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Function to generate the 'd' attribute for an SVG arc path
+    /**
+     * Generates the 'd' attribute string for an SVG arc path.
+     * @param {number} centerX - X coordinate of the center.
+     * @param {number} centerY - Y coordinate of the center.
+     * @param {number} radius - The radius of the arc.
+     * @param {number} startAngle - The starting angle of the arc in degrees.
+     * @param {number} endAngle - The ending angle of the arc in degrees.
+     * @returns {string} The 'd' attribute string for the SVG path.
+     */
     function getArcPath(centerX, centerY, radius, startAngle, endAngle) {
         const start = polarToCartesian(centerX, centerY, radius, startAngle);
         const end = polarToCartesian(centerX, centerY, radius, endAngle);
 
-        // If the arc spans 360 degrees (or very close), ensure it's drawn as a full circle
-        // by making the start and end points slightly different to avoid degenerate arc paths.
-        const fullCircleAdjustment = (Math.abs(endAngle - startAngle) >= 360 - 0.1) ? true : false;
-        const largeArcFlag = (endAngle - startAngle <= 180 && !fullCircleAdjustment) ? '0' : '1';
+        // largeArcFlag determines if the arc should be greater than 180 degrees
+        // fullCircleAdjustment helps draw a full circle correctly if angle is exactly 360
+        const fullCircleAdjustment = (Math.abs(endAngle - startAngle) >= 360 - 0.1) ? '1' : '0';
+        const largeArcFlag = (endAngle - startAngle <= 180 && fullCircleAdjustment === '0') ? '0' : '1';
 
-        // Path for a single arc
         return [
             `M ${start.x} ${start.y}`,
             `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x} ${end.y}`
         ].join(' ');
     }
 
-    let paths = []; // Array to hold all SVG path elements for slices
+    let paths = []; // Array to hold all SVG path elements (slices)
 
-    // Create SVG path elements for each slice
+    // Initial state: hide percentage/legend text
+    percentageText.innerHTML = '';
+    legendText.textContent = '';
+
+    // Create SVG path elements for each slice based on the data
     data.forEach((slice, index) => {
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.classList.add('donut-slice'); // Add class for styling
         path.setAttribute('fill', 'none'); // No fill, we're using stroke
         path.setAttribute('stroke', slice.color); // Set slice color
         path.setAttribute('stroke-width', strokeWidth); // Set thickness of the stroke
-        path.setAttribute('stroke-linecap', 'butt'); // 'butt' for square ends
+        path.setAttribute('stroke-linecap', 'butt'); // 'butt' for square ends (no rounded caps)
         path.setAttribute('data-percentage', slice.percentage); // Store percentage for hover
         path.setAttribute('data-legend', slice.legend);       // Store legend for hover
 
-        // Initially hide the path
-        path.setAttribute('d', ''); // No path drawn initially
+        // Initially hide the path by giving it an empty 'd' attribute
+        path.setAttribute('d', '');
 
-        // Add hover event listeners to each slice
+        // Add hover event listeners to each slice for interactivity
         path.addEventListener('mouseover', () => {
-            percentageValueTspan.textContent = slice.percentage; // Update percentage value
-            percentageSymbolTspan.textContent = '%';             // Update percentage symbol
-            legendText.textContent = slice.legend;               // Update legend in donut hole
+            // Show slice-specific text
+            percentageText.innerHTML = `${slice.percentage}<tspan style="font-size:0.6em; vertical-align:super;">%</tspan>`;
+            legendText.textContent = slice.legend;
 
-            // Set opacity for hovered slice to 1, others to 0.3
+            // Set opacity for the hovered slice to 1, and others to 0.3 (dimmed)
             paths.forEach(p => {
                 p.style.opacity = (p === path) ? '1' : '0.3';
             });
         });
+
         path.addEventListener('mouseout', () => {
-            percentageValueTspan.textContent = ''; // Clear percentage value
-            percentageSymbolTspan.textContent = ''; // Clear percentage symbol
-            legendText.textContent = '';     // Clear legend text
+            // Hide slice-specific text
+            percentageText.innerHTML = '';
+            legendText.textContent = '';
 
             // Reset all slices to full opacity
             paths.forEach(p => {
@@ -197,43 +220,42 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        svg.appendChild(path); // Add path to SVG
-        paths.push(path);      // Store reference to path element
+        // Insert paths into the SVG before the text elements so text is always on top
+        svg.insertBefore(path, percentageText);
+        paths.push(path); // Store reference to the path element
     });
-
-    // Re-order text elements to be on top of paths
-    svg.appendChild(document.getElementById('percentage-text'));
-    svg.appendChild(document.getElementById('legend-text'));
 
     // Animation variables
     const animationDuration = 1000; // Animation duration in milliseconds
-    let startTime = null;           // Timestamp when animation starts
 
-    // Main animation loop function
+    /**
+     * Main animation loop function.
+     * Draws the donut slices incrementally over time.
+     * @param {DOMHighResTimeStamp} timestamp - The current time in milliseconds (provided by requestAnimationFrame).
+     */
     function animate(timestamp) {
-        if (!startTime) startTime = timestamp; // Record start time on first call
-        const elapsed = timestamp - startTime; // Time elapsed since animation start
+        // Initialize startTime on the first call of animate
+        if (!animate.startTime) animate.startTime = timestamp;
+        const elapsed = timestamp - animate.startTime; // Time elapsed since animation started
         const animationProgress = Math.min(elapsed / animationDuration, 1); // Progress from 0 to 1
 
-        let accumulatedAngle = 0; // Tracks the start of the current slice's *full* angle
-        const totalAngleProgressed = 360 * animationProgress; // Total angle swept so far by animation
+        let accumulatedAngle = 0; // Tracks the start of the current slice's full theoretical angle
+        const totalAngleProgressed = 360 * animationProgress; // Total angle swept so far by the animation
 
         for (let i = 0; i < data.length; i++) {
             const slice = data[i];
             const fullSliceAngle = (slice.percentage / 100) * 360; // Full theoretical angle for this slice
 
             // Calculate the start and end angles for drawing, considering the gap
-            // With gapDegrees = 0.5, currentSliceDrawStartAngle = accumulatedAngle + 0.25
-            // and currentSliceDrawEndAngle = accumulatedAngle + fullSliceAngle - 0.25
             const currentSliceDrawStartAngle = accumulatedAngle + (gapDegrees / 2);
             const currentSliceDrawEndAngle = accumulatedAngle + fullSliceAngle - (gapDegrees / 2);
 
             let arcDrawStart = currentSliceDrawStartAngle;
             let arcDrawEnd = currentSliceDrawEndAngle;
 
-            // Adjust the arc drawing based on the animation progress
+            // Adjust the arc drawing based on the overall animation progress
             if (totalAngleProgressed < currentSliceDrawStartAngle) {
-                // Animation hasn't reached the start of this slice (including its leading gap) yet
+                // Animation hasn't reached the start of this slice yet (including its leading gap)
                 arcDrawEnd = arcDrawStart; // Draw nothing yet
             } else if (totalAngleProgressed < currentSliceDrawEndAngle) {
                 // Animation is currently sweeping through this slice's drawn area
@@ -245,13 +267,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const path = paths[i];
 
             // Only draw if the end angle is greater than the start angle to avoid errors with degenerate paths
-            if (arcDrawEnd > arcDrawStart + 0.01) { // Adding a small threshold for floating point precision
+            if (arcDrawEnd > arcDrawStart + 0.01) { // Small threshold for floating point precision
                 path.setAttribute('d', getArcPath(centerX, centerY, midRadius, arcDrawStart, arcDrawEnd));
             } else {
                 path.setAttribute('d', ''); // Hide the path if there's nothing to draw yet
             }
 
-            accumulatedAngle += fullSliceAngle; // Move to the start of the next slice's full theoretical position
+            // Accumulate the full theoretical angle for the next slice's starting point
+            accumulatedAngle += fullSliceAngle;
         }
 
         // Continue animation if not yet complete
@@ -266,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const finalDrawStartAngle = finalAccumulatedAngle + (gapDegrees / 2);
                 const finalDrawEndAngle = finalAccumulatedAngle + fullSliceAngle - (gapDegrees / 2);
 
-                if (finalDrawEndAngle > finalDrawStartAngle) { // Ensure positive arc length
+                if (finalDrawEndAngle > finalDrawStartAngle) {
                     path.setAttribute('d', getArcPath(centerX, centerY, midRadius, finalDrawStartAngle, finalDrawEndAngle));
                 } else {
                     path.setAttribute('d', ''); // Should not happen for valid data unless slice is 0%
@@ -276,6 +299,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Start the animation when the DOM is ready
-    requestAnimationFrame(animate);
+    // Intersection Observer to trigger animation when chart enters the viewport
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animationStarted) {
+                // Chart is visible and animation hasn't started yet, so start it
+                requestAnimationFrame(animate);
+                animationStarted = true; // Set flag to true to prevent re-animation
+                observer.disconnect(); // Stop observing once animation has started
+            }
+        });
+    }, {
+        threshold: 0.5 // Trigger when 50% of the chart is visible in the viewport
+    });
+
+    // Start observing the donut chart SVG element
+    observer.observe(svg);
 });

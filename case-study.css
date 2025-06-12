@@ -1,7 +1,7 @@
 /* Case Study Specific Styles */
 
 .case-study-main {
-    margin: 80px auto 0 auto;
+    margin: 73px auto 0 auto;
     display: flex;
     max-width: 1230px;
     position: relative;
@@ -11,8 +11,8 @@
 /* Side Navigation */
 .side-nav {
     width:280px; /* Made 50% wider from 200px */
-    height: 360px;
-
+    height: fit-content;
+    
 
     position:sticky;
     top: 135px;
@@ -21,7 +21,7 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1rem  1rem  0.5rem  1rem ;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
@@ -69,7 +69,7 @@
 .case-hero {
     display: block;
     grid-template-columns: 1fr 1fr;
-    padding: 3rem 0;
+    padding: 3rem 0 2.5rem;
     margin-bottom: 0rem;
     text-align: left; /* Keep hero layout as grid but left-aligned within cells */
 }
@@ -167,16 +167,16 @@ h2.section-title {
 
 .case-section p {
     font-size: 1rem;
-    line-height: 1.7;
+    line-height: 1.6;
     color: #555;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .case-section h3 {
     font-size: 1.4rem;
     font-weight: 400;
     color: #333;
-    margin: 2.5rem 0 0.9rem 0;
+    margin: 2.5rem 0 0.5rem 0;
     font-family: 'SUSE', sans-serif;
 }
 
@@ -186,6 +186,20 @@ h2.section-title {
     color: #34495e;
     margin: 1.5rem 0 0.8rem 0;
     font-family: 'SUSE', sans-serif;
+}
+
+
+.case-section ul {
+    padding-left: 1em;
+    margin-top: -0.25rem;
+}
+
+.case-section ul li {
+    padding-bottom: .5em;
+    line-height: 1.5em;
+}
+h3.contribution-title {
+    margin: 1.65rem 0 .5rem!important;
 }
 
 /* Context & Contribution */
@@ -200,10 +214,9 @@ h2.section-title {
 .donut-chart {
     width: 180px; /* Reduced to 90% of 200px */
     height: 180px; /* Reduced to 90% of 200px */
-    margin-bottom: 0.5rem; /* Reduced space below the chart as legend is now inside */
+    margin: .35rem 2rem 0 0; /* Reduced space below the chart as legend is now inside */
     position: relative;
     float: left;
-    margin-right: 1.5rem; /* Added space between chart and legend */
 }
 
 .donut-slice {
@@ -536,6 +549,91 @@ p.getintouch {
 .next-btn {
     margin-left: auto;
 }
+
+
+
+
+
+
+
+.balloonWrp {
+  display: grid;
+  row-gap: 20px;
+  column-gap: 20px;
+  grid-template-columns: 50% 50%; /* Two equal columns */
+  padding: 1.5rem 0 1rem;
+
+}
+.balloon {
+  background-color: #eee;
+  border-radius: 5px 5px 0 5px ; /* Less round corners */
+  padding: 25px 30px 25px 20px;
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: column; /* 
+  align-items: center;
+  justify-content: center; */
+  color: #555;
+}
+
+.balloon:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 30px; /* Aligned to the right */
+  width: 0;
+  height: 0;
+  border: 30px solid transparent;
+  border-top: 30px solid #eee; /* Matches balloon color */
+  border-bottom: 0;
+  margin-right: -30px; /* Adjust for right alignment */
+  margin-bottom: -30px;
+}
+
+.cima:before {
+  left: 30px;
+  margin-left: -30px;
+
+  top: 0;
+  margin-top: -30px;
+  transform: rotate(180deg);
+}
+
+.quote {
+  font-size: 3em; /* Big quote */
+  line-height: 1em;
+  margin:0 10px 25px 0;
+  color: #555;
+  float: left;
+}
+
+.sentence {
+  font-size: .9em;
+  line-height: 1.5em;
+  display: block;
+  font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Responsive Design */
 @media (max-width: 1024px) {
