@@ -261,6 +261,33 @@ body {
   opacity: 0;
 }
 
+/* About */
+
+.about-certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    row-gap: 3rem;
+    column-gap: 2.5rem;
+    margin-top: 5rem;
+}
+.about-certifications-grid::after {
+    content: '';
+    flex-basis: 100%;
+}
+.about-certification {
+    margin: 0;
+}
+.about-certification img {
+    width: 100%;
+}
+
+.about-certification p, .about-certification li {
+    font-size: .8rem;
+}
+
+.about-certification ul {
+padding-left: 1rem;}
+
 
 /* Footer */
 .footer {
