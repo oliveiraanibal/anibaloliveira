@@ -137,11 +137,11 @@ body {
 .filter-tag {
     background: #ecf0f1;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem .988rem;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.91rem;
+    font-size: 0.9rem;
     color: #666;
 }
 
