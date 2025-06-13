@@ -193,7 +193,7 @@ h2.section-title {
     font-size: 1.4rem;
     font-weight: 400;
     color: #555;
-    margin: 2.25rem 0 0.75rem 0;
+    margin: 2.5rem 0 0.75rem 0;
     font-family: 'SUSE', sans-serif;
 }
 
@@ -596,7 +596,7 @@ p.getintouch {
   column-gap: 20px;
   grid-template-columns: 47% 47%; /* Two equal columns */
   padding: 1.5rem 0 1rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 
 }
 .balloon {
