@@ -1,17 +1,17 @@
 // Portfolio filtering functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const filterTags = document.querySelectorAll('.filter-tag');
     const caseStudyCards = document.querySelectorAll('.case-study-card');
 
     // Add click event listeners to filter tags
     filterTags.forEach(tag => {
-        tag.addEventListener('click', function() {
+        tag.addEventListener('click', function () {
             const selectedTag = this.dataset.tag;
-            
+
             // Update active state
             filterTags.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
-            
+
             // Filter cards
             filterCards(selectedTag);
         });
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function filterCards(selectedTag) {
         caseStudyCards.forEach(card => {
             const cardTags = card.dataset.tags.split(',');
-            
+
             if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
                 card.style.display = 'block';
                 card.style.animation = 'none';
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add subtle parallax effect to hero section
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
         const heroSection = document.querySelector('.hero-section');
         if (heroSection) {

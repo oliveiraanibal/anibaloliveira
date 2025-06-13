@@ -1,15 +1,15 @@
 // Case Study Navigation and Interactions (No Dynamic Loading)
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const sideNavLinks = document.querySelectorAll('.side-nav-link');
     const sections = document.querySelectorAll('.case-section');
 
     // Smooth scroll for navigation links
     sideNavLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
-
+            
             if (targetSection) {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
-
+            
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 current = section.getAttribute('id');
             }
@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// DONUT CHART
+    // DONUT CHART
 
 
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     // Get references to SVG elements and text elements in the donut hole
     const svg = document.querySelector('.donut-chart');
     const percentageText = document.getElementById('percentage-text');
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gapDegrees = 0.5;
 
     // Flag to ensure animation runs only once when chart becomes visible
-    let animationStarted = false;
+    let animationStarted = false; 
 
     // Get the data for the donut chart from the HTML script tag
     const chartDataElement = document.getElementById('donut-chart-data');
