@@ -70,6 +70,8 @@
 
 .case-study-content img {
     max-width: 100%;
+    margin: 1.25rem auto 2.5rem;
+    display: block; /* Center images */
 }
 
 /* Hero Section */
@@ -101,14 +103,16 @@ h1.case-title {
     font-weight: 400;
 }
 
-.case-intro {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
+p.case-intro {
+    font-size: .85em!important;
+    line-height: 1.5em!important;
+    padding: 1.1em 1.75em !important;
+    margin: 0!important;
 }
 
 .case-hero-image {
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
+
 }
 
 .laptopbg {
@@ -156,10 +160,6 @@ padding: 15px 0 0 101px ;
     margin-top: 1.75rem;
 }
 
-.case-hero-content{
-    padding-left: 4.65rem;
-}
-
 
 /* Sections */
 .case-section {
@@ -172,13 +172,14 @@ padding: 15px 0 0 101px ;
     font-family: 'SUSE', sans-serif;
     font-weight: 500;
     color: #333;
-    margin-bottom: 1.65rem;
+    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #3498db;
 }
 
 h2.section-title {
     padding-top: 1rem;
+    color: #333;
 }
 
 .case-section p {
@@ -192,7 +193,7 @@ h2.section-title {
     font-size: 1.4rem;
     font-weight: 400;
     color: #333;
-    margin: 2.5rem 0 0.5rem 0;
+    margin: 2.25rem 0 0.5rem 0;
     font-family: 'SUSE', sans-serif;
 }
 
@@ -215,7 +216,7 @@ h2.section-title {
     line-height: 1.5em;
 }
 h3.contribution-title {
-    margin: 1.65rem 0 .5rem!important;
+    margin: .5rem 0 .5rem!important;
 }
 
 /* Context & Contribution */
@@ -227,12 +228,26 @@ h3.contribution-title {
     text-align: left; /* Keep text left-aligned within grid cells */
 }
 
+.contribution-chart {
+    text-align: center; /* Center its inline-block children */
+    margin-left: -2rem;
+}
+
+.contribution-chart ul {
+    display: inline-block; /* Make it an inline-block element */
+    vertical-align: middle; /* Align vertically with the donut chart */
+    text-align: left; /* Ensure text inside ul stays left-aligned */
+    margin: .35rem 0 0; /* Reset default ul margin if any interferes with centering */
+    padding: 0; /* Reset default ul padding if any interferes with centering */
+}
+
 .donut-chart {
     width: 180px; /* Reduced to 90% of 200px */
     height: 180px; /* Reduced to 90% of 200px */
-    margin: .35rem 2rem 0 0; /* Reduced space below the chart as legend is now inside */
+    margin: 0rem 2rem 0 0; /* Reduced space below the chart as legend is now inside */
     position: relative;
-    float: left;
+    display: inline-block; /* Ensure it behaves like an inline element */
+    vertical-align: middle; /* Align with text */
 }
 
 .donut-slice {
@@ -514,7 +529,7 @@ h3.contribution-title {
     border-left: 4px solid #9b59b6;
     padding: 1.25rem  1.5rem 0.3rem;
     text-align: left; /* Keep text left-aligned within takeaways */
-    margin-bottom: 2rem;
+
     border-radius: 8px;
 }
 
